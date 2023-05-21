@@ -10,6 +10,8 @@ const UsersList = (props) =>{
 
             <li key={user.id}>
             {user.name} ({user.age} years old)
+            {user.college}
+            
         </li>
 
         )) }
