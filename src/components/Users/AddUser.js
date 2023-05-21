@@ -4,7 +4,9 @@ import Card from '../UI/Card';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
 const AddUser = (props) =>{
-        
+
+    const nameInputRef = useRef();
+    const ageInputRef = useRef();   
      const [enteredName,setEnteredName]=useState('');
      const [enteredAge,setEnteredAge]=useState('');
      const [error, setError]=useState();
@@ -19,7 +21,9 @@ const AddUser = (props) =>{
             setError({title : "error in age", message : "please enter age greater than 1"})
           return;
         }
+        console.log(nameInputRef,ageInputRef);
         props.addUserToList(enteredName,enteredAge);
+        
         setEnteredAge('');
         setEnteredName('');
     }
@@ -43,9 +47,9 @@ const AddUser = (props) =>{
         <Card className={classes.input}>
              <form onSubmit={addUserHandler}>
                 <label htmlFor='username'>Username</label>
-                <input id="username" type="text" value={enteredName} onChange={nameHandler}/>
+                <input id="username" type="text" value={enteredName} onChange={nameHandler} ref={nameInputRef}/>
                 <label htmlFor='age'>Age(Years)</label>
-                <input id="age" type="number" value={enteredAge} onChange={ageHandler}/>
+                <input id="age" type="number" value={enteredAge} onChange={ageHandler} ref={ageInputRef}/>
                 <Button type="submit">Add User</Button>
             </form>
         </Card>
